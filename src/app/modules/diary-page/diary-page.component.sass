@@ -1,0 +1,93 @@
+@use '../../../assets/styles/root'
+
+.background
+  position: relative
+  width: 100%
+  height: 100%
+  padding: 50px 0 100px 0
+
+  $footer: root.$footerMarginTop
+
+.wrapperDiary
+  height: 100%
+  position: relative
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  gap: 45px
+  z-index: 1
+
+  @media (max-width: root.$xl)
+    gap: 30px
+
+  @media (max-width: root.$lg)
+    flex-direction: column
+
+  .userInfo
+    position: sticky
+    top: 40px
+    display: flex
+    flex-direction: column
+    gap: 30px
+    height: fit-content
+
+    @media (max-width: root.$lg)
+      position: relative
+      flex-direction: row-reverse
+      top: 0
+      gap: 45px
+
+    @media (max-width: root.$md)
+      flex-direction: column
+      gap: 30px
+
+    .userBlock
+      position: relative
+      min-width: 250px
+      width: 250px
+      min-height: fit-content
+      padding: 30px 20px
+      background-size: contain
+      box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.1)
+      border-radius: 5px
+      display: flex
+      flex-direction: column
+      gap: 30px
+
+      @media (max-width: root.$lg)
+        &:last-child
+          width: calc(100% - 250px - 45px / 2)
+
+        &:first-child
+          justify-content: space-between
+
+      @media (max-width: root.$md)
+        &:last-child, &:first-child
+          width: 100%
+
+        &:first-child
+          flex-direction: row
+          align-items: center
+
+      @media (max-width: root.$sm)
+        &:first-child
+          flex-direction: column
+
+  h1
+    font-weight: 400
+    margin-bottom: 30px
+
+.diaryBlock
+  position: relative
+  padding: 40px
+  width: 100%
+  background: rgba(255, 255, 255, 0.95)
+  box-shadow: 0 0 38px 4px rgba(0, 0, 0, 0.1)
+  border-radius: 5px
+  z-index: 1
+  display: flex
+  flex-direction: column
+  gap: 30px
+
+  @media (max-width: root.$sm)
+    padding: 40px 15px

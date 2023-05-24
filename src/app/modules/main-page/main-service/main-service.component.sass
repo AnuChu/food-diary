@@ -1,0 +1,79 @@
+@use '../../../../assets/styles/root'
+
+.service
+  margin: 50px 0
+
+.wrapperService
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: space-between
+  margin: 40px 0
+  gap: 30px
+
+.serviceBlock
+  width: calc((100% / 4) - 30px)
+  height: 200px
+  border-radius: 10px
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('../../../../assets/images/background/serviceblock.webp')
+  background-size: cover
+  padding: 20px
+  display: flex
+  flex-direction: column
+  gap: 20px
+  justify-content: center
+  transition: .3s ease
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1)
+  overflow: hidden
+
+  @media (max-width: root.$lg)
+    width: calc((100% / 2) - 30px)
+
+  @media (max-width: root.$sm)
+    width: 100%
+    padding: 20px 50px
+
+  img
+    transition: .3s ease
+    width: 50px
+    height: 50px
+    margin-top: 20px
+
+    @media (max-width: root.$xl)
+      margin-top: 40px
+
+  h3
+    transition: .3s ease
+    font-style: normal
+    font-weight: 600
+    font-size: 16px
+    line-height: 145%
+
+  &:hover
+    box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2)
+
+    h3
+      margin-top: -20px
+
+    .serviceButton
+      height: fit-content
+      opacity: 1
+      padding: 5px 10px
+      margin: 5px 0 0 0
+      cursor: pointer
+
+    img
+      opacity: 0
+      height: 0
+      margin: 0
+
+.serviceButton
+  transition: .3s ease
+  opacity: 0
+  padding: 0
+  margin: 0
+  font-size: 16px
+  width: 100%
+
+
+

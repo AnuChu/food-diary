@@ -1,0 +1,90 @@
+@use '../../../../assets/styles/root'
+
+.wrapperUser
+  position: relative
+  margin-bottom: 80px
+  width: 100%
+
+  .imageUser
+    position: absolute
+    left: 0
+    border-radius: 50%
+    width: 80px
+    height: 80px
+    object-fit: cover
+    z-index: 2
+    border: 2px solid root.$colorLight
+    outline: 2px solid root.$colorLight
+    background-color: root.$colorLight
+
+  .wrapperName, .wrapperChange
+    position: absolute
+    right: 0
+    border-radius: 10px
+    width: calc(210px - (80px / 2))
+    height: 80px
+    object-fit: cover
+    z-index: 0
+    background: root.$colorLight
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.7) 100%), url('../../../../assets/images/background/user.webp') no-repeat 100% 95%
+    background-size: cover
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    outline: 2px solid root.$colorLight
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.05)
+
+    @media (max-width: root.$md)
+      width: calc(210px - (80px / 2))
+      left: 40px
+
+    @media (max-width: root.$sm)
+      width: calc(100% - 40px)
+      justify-content: flex-start
+
+    .name
+      width: calc(210px - 80px)
+      text-align: center
+      padding: 10px
+      font-style: normal
+      font-weight: 600
+      font-size: 18px
+      line-height: 21px
+
+      @media (max-width: root.$sm)
+        width: calc(100% - 40px)
+        padding-left: 55px
+
+  .wrapperChange
+    z-index: 1
+    background: #E9F8D2FF
+    padding-left: 55px
+    padding-right: 10px
+    transition: .3s ease
+    transform: translateX(-40px)
+    opacity: 0
+
+    a
+      color: #05A67F
+
+  &:hover .wrapperChange
+    transform: translateX(0)
+    opacity: 1
+
+.wrapperParameters
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content: space-between
+  padding: 0 5px
+  gap: 10px
+
+.parameter
+  text-align: center
+  font-weight: 500
+  font-size: 16px
+  line-height: 125%
+
+.parameterColor
+  font-weight: 500
+  color: #05A67F

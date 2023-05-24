@@ -1,0 +1,33 @@
+<div class="mealTable">
+
+  <div class="mealRow mealMainRow">
+    <div class="mealMainCol">Наименование блюда</div>
+    <div class="mealCol">Белки</div>
+    <div class="mealCol">Жиры</div>
+    <div class="mealCol">Углеводы</div>
+    <div class="mealCol">Ккал</div>
+  </div>
+
+  <div class="mealRow" *ngFor="let recipe of addedRecipes">
+    <div class="mealMainCol">{{recipe.title}}</div>
+    <div class="mealCol">{{recipe.protein}}</div>
+    <div class="mealCol">{{recipe.fat}}</div>
+    <div class="mealCol">{{recipe.carbohydrate}}</div>
+    <div class="mealCol">{{recipe.kcal}}</div>
+    <div class="mealColDelete" *ngIf="addProduct">
+      <button><img src="assets/images/icon/delete.svg" (click)="deleteRowFunc(recipe, type)" alt="Удалить" height="24"
+                   width="24"/></button>
+    </div>
+
+  </div>
+</div>
+
+<form [formGroup]="productAdd" [tuiTextfieldCleaner]="true" *ngIf="addProduct">
+  <tui-combo-box tuiTextfieldSize="s" [formControl]="product" class="addRow" [tuiDropdownMaxHeight]=190 tuiDropdownDirection="bottom">
+    Добавить блюдо
+    <input tuiTextfield placeholder="Выберите или найдите блюдо"/>
+    <tui-data-list-wrapper *tuiDataList [items]="itemsAdd | tuiFilterByInput"></tui-data-list-wrapper>
+  </tui-combo-box>
+</form>
+
+

@@ -1,0 +1,36 @@
+@use '../../../../assets/styles/root'
+
+.calculateWrapper
+  display: flex
+  flex-direction: column
+  gap: 30px
+
+.title
+  display: flex
+  flex-direction: row
+  gap: 10px
+  justify-content: center
+  width: 100%
+
+  h2
+    font-style: normal
+    font-weight: 400
+    font-size: 25px
+    line-height: 33px
+
+.chart
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  gap: 30px
+
+\:host
+  --tui-chart-0: #95d2bb
+  --tui-chart-1: #feac5e
+  --tui-chart-2: #fdd8cc
+  --tui-chart-3: #4bc0c8
+  --tui-chart-4: #9795cd
+
+\:host .minus
+  --tui-chart-0: #feac5e

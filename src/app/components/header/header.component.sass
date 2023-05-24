@@ -1,0 +1,80 @@
+@use '../../../assets/styles/root'
+
+.header
+  z-index: 1
+  width: 100%
+  min-height: root.$headerSize
+  height: root.$headerSize
+  position: relative
+  background: root.$headerColor
+  box-shadow: 0 0.125rem 1rem #00000014
+  border-bottom: 1px solid #ededed
+  backdrop-filter: blur(2px)
+
+.wrapper
+  display: flex
+  align-items: center
+  height: 100%
+  justify-content: space-between
+
+.wrapperNav, .wrapperLink, .wrapperEnter
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  align-items: center
+  gap: 30px
+
+  @media (max-width: root.$sm)
+    gap: 15px
+
+.linkActive
+  color: root.$color1
+
+.wrapperLink
+  gap: 25px
+
+  @media (max-width: root.$sm)
+    gap: 15px
+
+.wrapperEnter
+  gap: 15px
+
+.wrapperLogo img
+  width: 45px
+  height: 45px
+
+.wrapperEnter
+  cursor: pointer
+  background: none
+  border: none
+  font-size: inherit
+  transition: .3s ease
+  color: root.$colorDark
+  padding: 0
+  margin: 0
+
+  img
+    width: 35px
+    height: 35px
+    object-fit: cover
+    border-radius: 50%
+    border: 1px solid #ECECEC
+    box-shadow: 0 0.125rem 1rem rgba(0, 0, 0, 0.1)
+
+  .userIcon
+    width: 35px
+    height: 35px
+    border-radius: 50%
+    border: 1px solid #ECECEC
+    box-shadow: 0 0.125rem 1rem rgba(0, 0, 0, 0.1)
+    fill: root.$colorDark
+    transition: .3s ease
+
+  &:hover
+    background: transparent
+    color: root.$color1
+
+    .userIcon
+      fill: root.$color1
+
+

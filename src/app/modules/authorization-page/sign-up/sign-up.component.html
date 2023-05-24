@@ -1,0 +1,190 @@
+<form [formGroup]="signUp" (submit)="submit()" class="form">
+
+  <div class="formReg">
+
+    <div class="formColWithPlace">
+
+      <div class="formCol">
+
+        <label for="name">
+          <tui-input id="name" tuiTextfieldSize="m" formControlName="name" class="invalid">
+            Имя
+          </tui-input>
+        </label>
+
+        <label for="email">
+          <tui-input tuiTextfieldSize="m" id="email" formControlName="email" class="invalid">
+            E-mail
+            <input tuiTextfield type="email" autocomplete="on"/>
+          </tui-input>
+        </label>
+
+        <label for="password">
+          <tui-input-password tuiTextfieldSize="m" id="password" formControlName="password" class="invalid">
+            Пароль
+            <input tuiTextfield type="password" autocomplete="off"/>
+          </tui-input-password>
+        </label>
+
+      </div>
+
+      <div class="formCol mini">
+        <label for="height">
+          <tui-input-number tuiTextfieldSize="m" formControlName="height" id="height" [tuiTextfieldPostfix]="'см'"
+                            [max]="300" class="invalid">
+            Рост
+          </tui-input-number>
+        </label>
+
+        <label for="weight">
+          <tui-input-number tuiTextfieldSize="m" formControlName="weight" id="weight" [tuiTextfieldPostfix]="'кг'"
+                            [max]="300" class="invalid">
+            Вес
+          </tui-input-number>
+        </label>
+
+        <label for="age">
+          <tui-input-number tuiTextfieldSize="m" formControlName="age" id="age" [tuiTextfieldPostfix]="'лет'"
+                            [max]="150" class="invalid">
+            Возраст
+          </tui-input-number>
+        </label>
+      </div>
+
+      <div class="formCol">
+        <label for="lifestyle">
+          <tui-select tuiTextfieldSize="m" id="lifestyle" [formControl]="lifestyle" class="invalid">
+            Ваша активность
+            <input tuiTextfield placeholder="Выберите свою активность"/>
+            <tui-data-list-wrapper *tuiDataList [items]="lifestyleList"></tui-data-list-wrapper>
+          </tui-select>
+        </label>
+
+        <label for="purpose">
+          <tui-select tuiTextfieldSize="m" id="purpose" [formControl]="purpose" class="invalid">
+            Ваша цель
+            <input tuiTextfield placeholder="Выберите свою цель"/>
+            <tui-data-list-wrapper *tuiDataList [items]="purposeList"></tui-data-list-wrapper>
+          </tui-select>
+        </label>
+
+        <div class="checkBox">
+
+          <tui-radio-labeled formControlName="gender" size="m" [item]="items[0]">
+            Мужчина
+          </tui-radio-labeled>
+
+          <tui-radio-labeled formControlName="gender" size="m" [item]="items[1]">
+            Женщина
+          </tui-radio-labeled>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="photo">
+
+      <tui-input-files
+        class="photoForm"
+        *ngIf="!photo.value"
+        accept="image/*"
+        [formControl]="photo"
+        (reject)="onReject($event)"
+      >
+
+        <ng-template let-dragged>
+          <div *ngIf="dragged; else base" class="content">
+            <div>Перетащите изображение сюда</div>
+          </div>
+          <ng-template #base>
+            <div class="content">
+              <div>Загрузите свой аватар <a tuiLink>(нажмите чтобы загрузить)</a></div>
+            </div>
+          </ng-template>
+        </ng-template>
+      </tui-input-files>
+
+      <tui-files>
+        <tui-file
+          *ngIf="loadedFiles$ | async as file"
+          [file]="file"
+          [showDelete]="photo.enabled"
+          (removed)="removeFile()"
+        ></tui-file>
+
+        <tui-file
+          *ngIf="rejectedFiles$ | async as file"
+          state="error"
+          [file]="file"
+          [showDelete]="photo.enabled"
+          (removed)="clearRejected()"
+        ></tui-file>
+
+        <tui-file
+          *ngIf="loadingFiles$ | async as file"
+          state="loading"
+          [file]="file"
+          [showDelete]="photo.enabled"
+        ></tui-file>
+
+      </tui-files>
+
+    </div>
+
+  </div>
+
+  <div>
+    <div class="errorBlock">
+
+      <div *ngIf="name.invalid && (name.touched || name.dirty)">
+        <span *ngIf="name.errors?.required">введите имя</span>
+        <span *ngIf="name.errors?.maxlength">максимальная длина имени 30 букв</span>
+      </div>
+
+      <div *ngIf="email.invalid && (email.touched || email.dirty)">
+        <span *ngIf="email.errors?.required">введите E-mail</span>
+        <span *ngIf="email.errors?.email">введите верный формат email</span>
+      </div>
+
+      <div *ngIf="password.invalid && (password.touched || password.dirty)">
+        <span *ngIf="password.errors?.required">введите пароль</span>
+        <span *ngIf="password.errors?.minlength">минимальная длина пароля 6 символов</span>
+      </div>
+
+      <div *ngIf="height.invalid && (height.touched || height.dirty)">
+        <span *ngIf="height.errors?.required">введите рост</span>
+        <span *ngIf="height.errors?.min">некорректный рост</span>
+      </div>
+
+      <div *ngIf="weight.invalid && (weight.touched || weight.dirty)">
+        <span *ngIf="weight.errors?.required">введите вес</span>
+        <span *ngIf="weight.errors?.min">некорректный вес</span>
+      </div>
+
+      <div *ngIf="age.invalid && (age.touched || age.dirty)">
+        <span *ngIf="age.errors?.required">введите сколько Вам лет</span>
+        <span *ngIf="age.errors?.min">некорректный возраст</span>
+      </div>
+
+      <div *ngIf="lifestyle.invalid && (lifestyle.touched || lifestyle.dirty)">
+        <span *ngIf="lifestyle.errors?.required">необходимо выбрать активность</span>
+      </div>
+
+      <div *ngIf="purpose.invalid && (purpose.touched || purpose.dirty)">
+        <span *ngIf="purpose.errors?.required">необходимо выбрать цель</span>
+      </div>
+
+    </div>
+
+    <div class="errorBlockSignIn" [class]="{'on' : error, 'off' : send}">
+      {{error ? "Произошла ошибка" : "Учетная запись успешно создана"}} {{textError ? textError : null}}
+    </div>
+  </div>
+
+  <div class="wrapperButton">
+    <button aria-label="Зарегистрироваться" type="submit" class="button" [disabled]="error">Зарегистрироваться</button>
+  </div>
+
+</form>
+

@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="wrapper">
+
+    <div class="topRow">
+      <a routerLink="/recipes">Просмотреть другие рецепты</a>
+    </div>
+
+    <form class="cardRecipe" [formGroup]="create">
+
+      <div class="block">
+        <h2>Наименование рецепта</h2>
+        <tui-input tuiTextfieldSize="m" formControlName="name" [tuiTextfieldLabelOutside]="true" class="invalid">
+          Введите наименование
+        </tui-input>
+        <div *ngIf="name.invalid && (name.touched || name.dirty)" class="error">
+          <div *ngIf="name.errors?.required">* поле не должно быть пустым</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Описание рецепта</h2>
+        <tui-text-area tuiTextfieldSize="m" formControlName="description" [expandable]="true" [tuiTextfieldLabelOutside]="true" class="invalid">
+          Опишите рецепт
+        </tui-text-area>
+        <div *ngIf="description.invalid && (description.touched || description.dirty)" class="error">
+          <div *ngIf="description.errors?.required">* описание не должно быть пустым</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Добавьте фото</h2>
+        <div class="preview" [ngClass]="{'invalidImg' : img.invalid && (img.touched || img.dirty)}">
+          <tui-input-files
+            class="photoForm"
+            *ngIf="!img.value"
+            accept="image/*"
+            [formControl]="img"
+            (reject)="onReject($event)"
+          >
+
+            <ng-template let-dragged>
+              <div *ngIf="dragged; else base" class="content">
+                <div>Перетащите изображение сюда</div>
+              </div>
+              <ng-template #base>
+                <div class="content">
+                  <div>Загрузите фото рецепта или <a tuiLink>(нажмите чтобы загрузить)</a></div>
+                </div>
+              </ng-template>
+            </ng-template>
+          </tui-input-files>
+
+          <tui-files>
+            <tui-file
+              *ngIf="loadedFiles$ | async as file"
+              [file]="file"
+              [showDelete]="img.enabled"
+              (removed)="removeFile()"
+            ></tui-file>
+
+            <tui-file
+              *ngIf="rejectedFiles$ | async as file"
+              state="error"
+              [file]="file"
+              [showDelete]="img.enabled"
+              (removed)="clearRejected()"
+            ></tui-file>
+
+            <tui-file
+              *ngIf="loadingFiles$ | async as file"
+              state="loading"
+              [file]="file"
+              [showDelete]="img.enabled"
+            ></tui-file>
+
+          </tui-files>
+        </div>
+
+        <div *ngIf="img.invalid && (img.touched || img.dirty)" class="error">
+          <div *ngIf="img.errors?.required">* добавьте фото</div>
+        </div>
+
+      </div>
+
+      <div class="block">
+        <h2>Выберите состав</h2>
+
+        <app-plan-table [allRecipes]="allProducts" [addedRecipes]="addedProducts" [addNewRowFunc]="addProduct"
+                        [deleteRowFunc]="deleteProduct" [ngClass]="{'invalidTable' : empty && currentKcal <= 0}"></app-plan-table>
+
+        <div *ngIf="empty && currentKcal <= 0" class="error">
+          <div>* добавьте продукты</div>
+        </div>
+
+        <div class="kcalBlock">
+          Итоговая калорийность рецепта: <span>{{currentKcal}}&nbsp;Ккал</span>
+        </div>
+      </div>
+
+
+      <div class="blockError" [ngClass]="{'on' : send, 'off' : error}">
+        {{error ? "Произошла ошибка" : "Рецепт успешно создан"}}
+      </div>
+
+      <div class="wrapperButton">
+        <a routerLink="/recipes">
+          <button class="outline" aria-label="Отмена">Отмена</button>
+        </a>
+        <button class="button" aria-label="Создать рецепт" (click)="createRecipe()">
+          Создать
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+
+

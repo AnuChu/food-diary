@@ -1,0 +1,31 @@
+<form [formGroup]="signIn" (submit)="submit()" class="form">
+
+  <label for="email">
+    <tui-input tuiTextfieldSize="m" id="email" formControlName="email" class="invalid">
+      E-mail
+      <input tuiTextfield type="email" autocomplete="on"/>
+    </tui-input>
+    <div *ngIf="email.invalid && (email.touched || email.dirty)" class="error">
+      <div *ngIf="email.errors?.required">введите E-mail</div>
+      <div *ngIf="email.errors?.email">введите верный формат email</div>
+    </div>
+  </label>
+
+  <label for="password">
+    <tui-input-password tuiTextfieldSize="m" id="password" formControlName="password" class="invalid">
+      Пароль
+      <input tuiTextfield type="password" autocomplete="off"/>
+    </tui-input-password>
+    <div *ngIf="password.invalid && (password.touched || password.dirty)" class="error">
+      <div *ngIf="password.errors?.required">введите пароль</div>
+    </div>
+  </label>
+
+  <div class="errorBlockSignIn" [class]="{'on' : error}">
+    Неверно введен логин или пароль
+  </div>
+
+  <button aria-label="Войти" type="submit" class="button" [disabled]="error">Войти</button>
+
+</form>
+

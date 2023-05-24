@@ -1,0 +1,14 @@
+<div class="background">
+  <div class="container">
+    <div class="wrapperDiary">
+      <div class="userInfo">
+        <app-diary-user class="userBlock"></app-diary-user>
+        <app-diary-calculator class="userBlock" [mealPlan]="mealPlan | async"></app-diary-calculator>
+      </div>
+      <div class="diaryBlock">
+        <app-diary-plan [mealPlan]="mealPlan | async"></app-diary-plan>
+      </div>
+    </div>
+  </div>
+</div>
+

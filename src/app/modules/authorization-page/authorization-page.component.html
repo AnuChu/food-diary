@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="userBlock" [ngClass]="{'signIn' : signIn}">
+
+    <div class="wrapperSign">
+      <button aria-label="Вход" (click)="signIn = true" [ngClass]="{'active' : signIn}">Вход</button>
+      <button aria-label="Регистрация" (click)="signIn = false" [ngClass]="{'active' : !signIn}">Регистрация</button>
+    </div>
+
+    <div class="wrapperSignIn" [ngClass]="{'wrapperSignUp' : !signIn}">
+      <div class="backgroundUser">
+        <img src="../../../assets/images/icon/userEmpty.svg" alt="Пользователь" height="80" width="80"/>
+      </div>
+      <h1>{{signIn ? "Вход в учетную запись" : "Регистрация"}}</h1>
+
+      <app-sign-in *ngIf="signIn"></app-sign-in>
+      <app-sign-up *ngIf="!signIn" (signUpSuccess)="handleSignIn($event)"></app-sign-up>
+
+    </div>
+  </div>
+</div>
+

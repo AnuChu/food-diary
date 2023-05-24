@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="wrapper">
+
+    <div class="topRow">
+      <a routerLink="/recipes">Просмотреть другие рецепты</a>
+      <div class="author">
+        <img [src]="author?.photo ? author?.photo : 'assets/images/icon/userEmpty.svg'" [alt]="author?.name" width="30"
+             height="30"/>
+        {{author?.name ? author?.name : "Автор"}}
+      </div>
+    </div>
+
+    <div class="cardRecipe">
+      <h1>{{recipe?.title}}</h1>
+
+      <div class="preview">
+        <img [src]="recipe?.img ? recipe?.img : '/assets/images/recipes/plug.webp'" [alt]=recipe?.title height="400"
+             width="100%">
+        <div class="kcalBlock">
+          {{recipe?.kcal}}&nbsp;Ккал
+        </div>
+      </div>
+
+      <h2>Описание</h2>
+      <div class="description">
+        {{recipe?.description}}
+      </div>
+
+
+      <h2>Состав</h2>
+      <app-plan-table [addedRecipes]="products" [addProduct]="false"></app-plan-table>
+
+      <div class="comments">
+        <h2>Комментарии</h2>
+        <div class="commentsWrapper">
+          <div class="commentUser" *ngFor="let comment of comments">
+            <div class="commentAuthor">
+              <div class="nameAuthor">
+                <img [src]="comment.user.photo ? comment.user.photo : 'assets/images/icon/userEmpty.svg'"
+                     [alt]=comment.user.name>
+                {{comment.user.name}}
+              </div>
+              <div class="date">
+                {{comment.comment.date.toLocaleString()}}
+              </div>
+            </div>
+            <div class="commentContent">
+              {{comment.comment.text}}
+            </div>
+          </div>
+
+          <form class="commentUser" [formGroup]="formComment">
+            <div class="commentAuthor">
+              <div class="nameAuthor">
+                <img [src]="currentUser?.photo ? currentUser?.photo : 'assets/images/icon/userEmpty.svg'"
+                     [alt]=currentUser?.name>
+                {{currentUser?.name}}
+              </div>
+            </div>
+            <div class="commentContent">
+              <tui-text-area tuiTextfieldSize="m" formControlName="comment" class="tui-space_bottom-4 field-small"
+                             [expandable]="true">
+                Добавить комментарий
+              </tui-text-area>
+            </div>
+            <button class="button" (click)="addComment()" [disabled]="formComment.invalid">Отправить</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+

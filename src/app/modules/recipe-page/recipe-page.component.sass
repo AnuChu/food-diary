@@ -1,0 +1,14 @@
+@use '../../../assets/styles/root'
+@include root.mainWrapper('../images/background/recipe.webp', true)
+
+.pageRecipe
+  display: flex
+  flex-direction: column
+  gap: 50px
+
+.wrapperRecipes
+  padding: 50px 0 20px 0
+  background: rgba(169, 169, 173, 0.03)
+
+\:host
+  --tui-link: root.$colorDark

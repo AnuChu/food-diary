@@ -1,0 +1,34 @@
+<header class="header">
+  <div class="container">
+    <div class="wrapper">
+      <nav class="wrapperNav">
+        <div class="wrapperLogo">
+          <a routerLink="/"><img src="../../../assets/images/logo.svg" alt="Логотип" height="45" width="45"/></a>
+        </div>
+
+        <div class="wrapperLink">
+          <a routerLink="/diary" routerLinkActive="linkActive">
+            Дневник
+          </a>
+          <a routerLink="/recipes" routerLinkActive="linkActive">
+            Рецепты
+          </a>
+        </div>
+      </nav>
+
+      <a routerLink="/authorization" *ngIf="!user">
+        <button class="wrapperEnter" aria-label="Вход">
+          <tui-svg [src]="userIcon" class="userIcon"></tui-svg>
+          Войти
+        </button>
+      </a>
+
+      <button class="wrapperEnter" aria-label="Выход" *ngIf="user" (click)="logout()">
+        <tui-svg [src]="userIcon" class="userIcon" *ngIf="!user.photo"></tui-svg>
+        <img *ngIf="user.photo" [src]="user.photo" alt="Пользователь" width="35" height="35">
+        Выйти
+      </button>
+
+    </div>
+  </div>
+</header>

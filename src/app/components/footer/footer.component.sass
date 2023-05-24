@@ -1,0 +1,61 @@
+@use '../../../assets/styles/root'
+
+.footer
+  position: relative
+  background: root.$footerColor
+  width: 100%
+  margin-top: root.$footerMarginTop
+
+.wrapperFooter
+  border-top: 2px solid rgba(204, 204, 204, 0.5)
+  padding: 20px 0
+  display: flex
+  align-items: center
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content: space-between
+  gap: 30px
+
+.wrapperContent
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  align-items: center
+  gap: 30px
+
+.wrapperLogo
+  @media (max-width: root.$sm)
+    display: none
+
+  img
+    width: 45px
+    height: 45px
+
+.wrapperContent p
+  margin: 0
+  padding: 0
+  max-width: 500px
+  font-style: normal
+  font-weight: 600
+  font-size: 12px
+  line-height: 123%
+  color: root.$colorText
+
+.scrollToTop
+  cursor: pointer
+  border: none
+  background: none
+  padding: 0
+  margin: 0
+  width: 44px
+  height: 44px
+  min-width: 44px
+  min-height: 44px
+  border-radius: 11px
+  transition: .3s ease
+  background: root.$color
+
+  &:hover
+    background: root.$colorContrast
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25)
+

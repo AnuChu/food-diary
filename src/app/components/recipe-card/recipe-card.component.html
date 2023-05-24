@@ -1,0 +1,32 @@
+<div class="wrapperRecipe">
+  <div class="recipeBlockWrapper" *ngFor="let recipe of recipes?.slice(0, count)">
+    <a [routerLink]="['/recipes', recipe.id]" class="recipeBlock">
+      <div class="imgBlock">
+        <img [src]="recipe.img ? recipe.img : '/assets/images/recipes/plug.webp'" [alt]=recipe.title width="330"
+             height="220">
+        <div class="kcalBlock">
+          {{recipe.kcal}} Ккал
+        </div>
+      </div>
+      <div class="content">
+        <h3>{{recipe.title}}</h3>
+        <div class="comments" *ngIf="recipe.commentCount !== 0">
+          <img src="assets/images/icon/comment.svg" alt="Комментарии"/>
+          {{recipe.commentCount}}
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="recipeBlockWrapper" *ngIf="create">
+    <a routerLink="/recipes/create" class="recipeBlock">
+      <div class="imgBlock">
+        <img src="assets/images/icon/create.svg" alt="Создать" class="createPlug" width="60" height="60"/>
+      </div>
+      <div class="content">
+        <h3>Добавить новый рецепт</h3>
+      </div>
+    </a>
+  </div>
+
+</div>

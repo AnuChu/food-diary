@@ -1,0 +1,11 @@
+<div class="recipe">
+  <div class="container">
+    <h2>Популярные рецепты</h2>
+    <app-recipe-card [recipes]="recipes | async" [count]="3"></app-recipe-card>
+    <div class="wrapperShowMore">
+      <a routerLink="/recipes">
+        <button aria-label="Показать еще" class="button showMore">Показать еще рецепты</button>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="wrapperUser">
+  <img [src]="(dataUser|async)?.photo ? (dataUser|async)?.photo : '/assets/images/icon/userEmpty.svg'" alt="Пользователь"
+       class="imageUser" height="80" width="80">
+  <div class="wrapperName">
+    <div class="name">{{(dataUser|async)?.name}}</div>
+  </div>
+  <div class="wrapperChange">
+    <a routerLink="/user">
+      Изменить свои данные
+    </a>
+  </div>
+</div>
+
+<div class="wrapperParameters">
+  <div class="parameter">Рост:&nbsp;<span class="parameterColor">{{(dataUser|async)?.height}}&nbsp;см</span></div>
+  <div class="parameter">Вес:&nbsp;<span class="parameterColor">{{(dataUser|async)?.weight}}&nbsp;кг</span></div>
+</div>
+
+
+
+

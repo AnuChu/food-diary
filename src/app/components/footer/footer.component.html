@@ -1,0 +1,19 @@
+<footer class="footer">
+  <div class="container">
+    <div class="wrapperFooter">
+      <div class="wrapperContent">
+        <div class="wrapperLogo">
+          <a routerLink="/"><img src="../../../assets/images/logo.svg" alt="logo" height="45" width="45"/></a>
+        </div>
+        <p>
+          Дневник здорового питания - это сервис для планирования и расчета КБЖУ. Сервис
+          разработан в
+          учебных целях. Вся информация не является достоверной.
+        </p>
+      </div>
+      <button (click)="scrollToTop()" class="scrollToTop" aria-label="Наверх">
+        <tui-svg [src]="tuiIconChevronUpLarge"></tui-svg>
+      </button>
+    </div>
+  </div>
+</footer>

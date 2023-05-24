@@ -1,0 +1,16 @@
+<div class="service">
+  <div class="container">
+    <h2>Сервис предоставляет</h2>
+
+    <div class="wrapperService">
+      <div class="serviceBlock" *ngFor="let service of services">
+        <img [src]=service.icon [alt]=service.title width="50" height="50">
+        <h3>{{service.title}}</h3>
+        <a [routerLink]=service.link>
+          <button class="button serviceButton" aria-label="Подробнее">Подробнее</button>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>

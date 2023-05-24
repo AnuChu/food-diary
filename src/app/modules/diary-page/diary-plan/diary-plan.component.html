@@ -1,0 +1,43 @@
+<div>
+  <div class="titleButton">
+    <h2 class="title">Планирование приемов пищи</h2>
+
+    <div class="wrapperWeek">
+      <tui-input-date tuiTextfieldSize="s" [formControl]="dateControl">
+        Дата
+      </tui-input-date>
+    </div>
+  </div>
+
+
+  <div class="wrapperPlan">
+    <div class="wrapperMeal">
+      <h3>{{mealPlan?.breakfast?.mealName}}</h3>
+      <app-plan-table [addedRecipes]="getAddedRecipes('breakfast')"
+                      [allRecipes]="allRecipes|async"
+                      [type]="'breakfast'"
+                      [deleteRowFunc]="deleteMeal"
+                      [addNewRowFunc]="addNewMeal"></app-plan-table>
+    </div>
+
+    <div class="wrapperMeal">
+      <h3>{{mealPlan?.lunch?.mealName}}</h3>
+      <app-plan-table [addedRecipes]="getAddedRecipes('lunch')"
+                      [allRecipes]="allRecipes|async"
+                      [type]="'lunch'"
+                      [deleteRowFunc]="deleteMeal"
+                      [addNewRowFunc]="addNewMeal"></app-plan-table>
+    </div>
+
+    <div class="wrapperMeal">
+      <h3>{{mealPlan?.dinner?.mealName}}</h3>
+      <app-plan-table [addedRecipes]="getAddedRecipes('dinner')"
+                      [allRecipes]="allRecipes|async"
+                      [type]="'dinner'"
+                      [deleteRowFunc]="deleteMeal"
+                      [addNewRowFunc]="addNewMeal"></app-plan-table>
+    </div>
+
+  </div>
+
+</div>

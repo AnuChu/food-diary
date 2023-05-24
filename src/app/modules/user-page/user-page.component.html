@@ -1,0 +1,135 @@
+<div class="container">
+  <div class="userBlock">
+
+    <div class="wrapperSignIn wrapperSignUp">
+      <div class="backgroundUser">
+        <img src="../../../assets/images/icon/userEmpty.svg" alt="Пользователь" height="80" width="80"/>
+      </div>
+      <h1>Изменить свои данные</h1>
+
+      <form [formGroup]="change" (submit)="submit()" class="form">
+
+        <div class="formReg">
+
+          <div class="formColWithPlace">
+
+            <div class="formCol">
+
+              <label for="name">
+                <tui-input id="name" tuiTextfieldSize="m" formControlName="name" class="invalid">
+                  Имя
+                </tui-input>
+              </label>
+
+            </div>
+
+            <div class="formCol mini">
+              <label for="height">
+                <tui-input-number tuiTextfieldSize="m" formControlName="height" id="height" [tuiTextfieldPostfix]="'см'"
+                                  [max]="300" class="invalid">
+                  Рост
+                </tui-input-number>
+              </label>
+
+              <label for="weight">
+                <tui-input-number tuiTextfieldSize="m" formControlName="weight" id="weight" [tuiTextfieldPostfix]="'кг'"
+                                  [max]="300" class="invalid">
+                  Вес
+                </tui-input-number>
+              </label>
+
+              <label for="age">
+                <tui-input-number tuiTextfieldSize="m" formControlName="age" id="age" [tuiTextfieldPostfix]="'лет'"
+                                  [max]="150" class="invalid">
+                  Возраст
+                </tui-input-number>
+              </label>
+            </div>
+
+            <div class="formCol">
+              <label for="lifestyle">
+                <tui-select tuiTextfieldSize="m" id="lifestyle" [formControl]="lifestyle" class="invalid">
+                  Ваша активность
+                  <input tuiTextfield placeholder="Выберите свою активность"/>
+                  <tui-data-list-wrapper *tuiDataList [items]="lifestyleList"></tui-data-list-wrapper>
+                </tui-select>
+              </label>
+
+              <label for="purpose">
+                <tui-select tuiTextfieldSize="m" id="purpose" [formControl]="purpose" class="invalid">
+                  Ваша цель
+                  <input tuiTextfield placeholder="Выберите свою цель"/>
+                  <tui-data-list-wrapper *tuiDataList [items]="purposeList"></tui-data-list-wrapper>
+                </tui-select>
+              </label>
+
+              <div class="checkBox">
+
+                <tui-radio-labeled formControlName="gender" size="m" [item]="items[0]">
+                  Мужчина
+                </tui-radio-labeled>
+
+                <tui-radio-labeled formControlName="gender" size="m" [item]="items[1]">
+                  Женщина
+                </tui-radio-labeled>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div>
+          <div class="errorBlock">
+
+            <div *ngIf="name.invalid && (name.touched || name.dirty)">
+              <span *ngIf="name.errors?.required">введите имя</span>
+              <span *ngIf="name.errors?.maxlength">максимальная длина имени 30 букв</span>
+            </div>
+
+            <div *ngIf="height.invalid && (height.touched || height.dirty)">
+              <span *ngIf="height.errors?.required">введите рост</span>
+              <span *ngIf="height.errors?.min">некорректный рост</span>
+            </div>
+
+            <div *ngIf="weight.invalid && (weight.touched || weight.dirty)">
+              <span *ngIf="weight.errors?.required">введите вес</span>
+              <span *ngIf="weight.errors?.min">некорректный вес</span>
+            </div>
+
+            <div *ngIf="age.invalid && (age.touched || age.dirty)">
+              <span *ngIf="age.errors?.required">введите сколько Вам лет</span>
+              <span *ngIf="age.errors?.min">некорректный возраст</span>
+            </div>
+
+            <div *ngIf="lifestyle.invalid && (lifestyle.touched || lifestyle.dirty)">
+              <span *ngIf="lifestyle.errors?.required">необходимо выбрать активность</span>
+            </div>
+
+            <div *ngIf="purpose.invalid && (purpose.touched || purpose.dirty)">
+              <span *ngIf="purpose.errors?.required">необходимо выбрать цель</span>
+            </div>
+
+          </div>
+
+          <div class="success" [ngClass]="{'on' : send, 'off' : error}">
+            {{error ? "Произошла ошибка" : "Ваши данные успешно сохранены"}}
+          </div>
+        </div>
+
+        <div class="wrapperButton">
+          <a routerLink="/diary">
+            <button aria-label="Отмена" type="submit" class="outline cancel">Отмена</button>
+          </a>
+          <button aria-label="Сохранить" type="submit" class="button" [disabled]="change.invalid || send">Сохранить
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+

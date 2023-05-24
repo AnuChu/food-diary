@@ -1,0 +1,119 @@
+@use '../../../../assets/styles/root'
+
+.wrapper
+  background: rgba(255, 255, 255, 0.95)
+  box-shadow: 0 0 38px 4px rgba(0, 0, 0, 0.1)
+  border-radius: 5px
+  margin: 50px auto 100px auto
+  max-width: 900px
+  padding: 40px
+
+  @media (max-width: root.$sm)
+    padding: 40px 15px
+
+.topRow
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content: space-between
+  align-items: center
+
+  .author
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    align-items: center
+    gap: 10px
+
+    img
+      width: 30px
+      height: 30px
+      object-fit: cover
+
+.cardRecipe
+  display: flex
+  flex-direction: column
+  padding: 20px 0 0 0
+  margin: 20px 0 0 0
+  border-top: 2px solid #ECECEC
+  gap: 30px
+
+  .block
+    display: flex
+    flex-direction: column
+    gap: 15px
+
+  h1, h2
+    color: #333333
+    font-style: normal
+    line-height: 33px
+
+  h1
+    font-size: 22px
+    font-weight: 600
+
+  h2
+    font-size: 20px
+    font-weight: 500
+
+  label.createName
+    font-weight: 500
+    font-size: 20px
+    color: #333333
+    font-style: normal
+
+.wrapperButton
+  margin-top: 10px
+  gap: 10px
+  display: flex
+  justify-content: space-between
+
+.blockError
+  border-radius: 10px
+  width: 100%
+  padding: 0
+  opacity: 0
+  height: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  transition: .3s ease
+
+  &.on, &.off
+    padding: 20px
+    opacity: 1
+    height: 50px
+
+  &.on
+    background: root.$colorContrast
+
+  &.off
+    background: #ff8787
+
+
+.error
+  display: flex
+  flex-direction: column
+  text-align: left
+  color: #f45725
+  font-size: 14px
+  margin-top: -10px
+
+.kcalBlock
+  border-bottom: 2px solid #ECECEC
+  color: #333333
+  font-size: 18px
+  padding: 10px 0 30px 0
+
+  span
+    font-weight: 600
+
+.invalid.ng-touched.ng-invalid, .invalidImg, .invalidTable
+  outline: 1px solid #f45725
+
+.invalidImg
+  border-radius: 15px
+
+\:host
+  --tui-primary: #88ac1d
+  --tui-link: #88ac1d
